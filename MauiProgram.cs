@@ -11,8 +11,13 @@ public static class MauiProgram
 			.UseMauiApp<App>()
 			.ConfigureFonts(fonts =>
 			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+				fonts.AddFont("SF-Pro-Display-Regular.otf", "SFProRegular");
+                fonts.AddFont("SF-Pro-Display-Bold.otf", "SFProBold");
+                fonts.AddFont("SF-Pro-Display-Light.otf", "SFProLight");
+                fonts.AddFont("SF-Pro-Display-Medium.otf", "SFProMedium");
+                fonts.AddFont("SF-Pro-Display-Semibold.otf", "SFProSemibold");
+                fonts.AddFont("SF-Pro-Display-Black.otf", "SFProBlack");
+                fonts.AddFont("SF-Pro-Display-Heavy.otf", "SFProHeavy");
 			});
 
 #if DEBUG
@@ -21,4 +26,5 @@ public static class MauiProgram
 
 		return builder.Build();
 	}
+
 }

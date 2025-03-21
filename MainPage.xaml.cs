@@ -1,24 +1,41 @@
-﻿namespace Bocaito;
+﻿using Bocaito.Services;
+using Supabase.Gotrue;
+using System;
+using System.Threading.Tasks;
+using Microsoft.Maui.Controls;
 
-public partial class MainPage : ContentPage
+namespace Bocaito
 {
-	int count = 0;
+    public partial class MainPage : ContentPage
+    {
+        private readonly SupabaseService _supabaseService = new();
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+        public MainPage()
+        {
+            InitializeComponent();
+            IniciarSupabase();
+        }
 
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
+        private async void IniciarSupabase()
+        {
+            await _supabaseService.Initialize();
+        }
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
+        private async void signup_clicked(object sender, EventArgs e)
+        {
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+            try
+            {
+                var session = await _supabaseService.SignUp(correo.Text, contraseña.Text, nombre.Text, apellido.Text);
+                if (session != null)
+                {
+                    await DisplayAlert("Éxito", "Usuario registrado correctamente", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
+    }
 }
-

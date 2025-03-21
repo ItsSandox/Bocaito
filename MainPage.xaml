@@ -23,12 +23,41 @@
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
+            <Entry
+                x:Name="correo"
+                FontFamily="SFProRegular"
+                FontSize="24"
+                Placeholder="Correo"
+                HorizontalOptions="Fill" />
+
+             <Entry
+                x:Name="contraseña"
+                FontFamily="SFProRegular"
+                FontSize="24"
+                Placeholder="Contraseña"
+                IsPassword="True"
+                HorizontalOptions="Fill" />
+
+            <Entry
+                x:Name="nombre"
+                FontFamily="SFProRegular"
+                FontSize="24"
+                Placeholder="Nombre"
+                HorizontalOptions="Fill" />
+
+             <Entry
+                x:Name="apellido"
+                FontFamily="SFProRegular"
+                FontSize="24"
+                Placeholder="Apellido"
+                HorizontalOptions="Fill" />
 
             <Button
-                x:Name="CounterBtn"
-                Text="Click me" 
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
+                x:Name="signup"
+                FontFamily="SFProBold"
+                FontSize="24"
+                Text="Registrate" 
+                Clicked="signup_clicked"
                 HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
