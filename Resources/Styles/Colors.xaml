@@ -5,16 +5,34 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
+    <Color x:Key="Primary">#391202</Color> 
+    <Color x:Key="Secondary">#5A1F0E</Color>  
+    <Color x:Key="Tertiary">#FF5722</Color>  
+    <Color x:Key="Input">#EAEAEC</Color> 
+    <Color x:Key="PlaceHolder">#8a898e</Color> 
+    <Color x:Key="Background">#FFFFFF</Color>
+    <Color x:Key="PrimaryText">#000000</Color>
+    <!-- Modo Claro -->
 
-    <Color x:Key="Primary">#512BD4</Color>
-    <Color x:Key="PrimaryDark">#ac99ea</Color>
-    <Color x:Key="PrimaryDarkText">#242424</Color>
-    <Color x:Key="Secondary">#DFD8F7</Color>
-    <Color x:Key="SecondaryDarkText">#9880e5</Color>
-    <Color x:Key="Tertiary">#2B0B98</Color>
+    <Color x:Key="BackgroundLight">#FFFFFF</Color> <!-- Fondo claro -->
+    <Color x:Key="PrimaryLight">#391202</Color>   <!-- Color principal (marrón) -->
+    <Color x:Key="SecondaryLight">#5A1F0E</Color> <!-- Color secundario suave (gris claro) -->
+    <Color x:Key="InputLight">#EAEAEC</Color> <!-- Color secundario suave (gris claro) -->
+    <Color x:Key="PrimaryLightText">#000000</Color> <!-- Texto principal (negro) -->
+    <Color x:Key="SecondaryLightText">#391202</Color> <!-- Texto secundario en color de marca (marrón) -->
+    <Color x:Key="WhiteLightText">#FFFFFF</Color>  <!-- Texto blanco, generalmente usado para títulos -->
+
+    <!-- Modo Oscuro -->
+    <Color x:Key="PlaceHolderDark">#8a898e</Color> 
+    <Color x:Key="BackgroundDark">#121212</Color> <!-- Fondo oscuro -->
+    <Color x:Key="PrimaryDark">#5A1F0E</Color>   <!-- Color principal (marrón oscuro) -->
+    <Color x:Key="SecondaryDark">#7C2915</Color>   <!-- Color principal (marrón oscuro) -->
+    <Color x:Key="InputDark">#2A2A2A</Color> <!-- Color secundario oscuro -->
+    <Color x:Key="PrimaryDarkText">#FFFCE9</Color> <!-- Texto principal en color claro (casi blanco) -->
+    <Color x:Key="SecondaryDarkText">#5A1F0E</Color> <!-- Texto secundario en el color de marca -->
 
     <Color x:Key="White">White</Color>
-    <Color x:Key="Black">Black</Color>
+    <Color x:Key="Black">#121212</Color>
     <Color x:Key="Magenta">#D600AA</Color>
     <Color x:Key="MidnightBlue">#190649</Color>
     <Color x:Key="OffBlack">#1f1f1f</Color>

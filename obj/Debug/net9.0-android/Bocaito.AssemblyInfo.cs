@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Bocaito")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+24fb31197c3fccc633ecb1b6430646753668fb15")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+8f5bb13db0456c93acf358a992996c100fdbb4d7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Bocaito")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Bocaito")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

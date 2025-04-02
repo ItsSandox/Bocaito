@@ -30,12 +30,6 @@ build_metadata.AdditionalFiles.ManifestResourceName = Bocaito.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[D:/Bocaito/Bocaito/MainPage.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = Bocaito.MainPage.xaml
-build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
-build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
-
 [D:/Bocaito/Bocaito/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Bocaito.Resources.Styles.Colors.xaml
@@ -47,3 +41,27 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Bocaito.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[D:/Bocaito/Bocaito/Views/ForgotPasswordPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Bocaito.Views.ForgotPasswordPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ForgotPasswordPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ForgotPasswordPage.xaml
+
+[D:/Bocaito/Bocaito/Views/ForgotPasswordPage2.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Bocaito.Views.ForgotPasswordPage2.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ForgotPasswordPage2.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ForgotPasswordPage2.xaml
+
+[D:/Bocaito/Bocaito/Views/LogInPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Bocaito.Views.LogInPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\LogInPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\LogInPage.xaml
+
+[D:/Bocaito/Bocaito/Views/SignUpPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Bocaito.Views.SignUpPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\SignUpPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\SignUpPage.xaml

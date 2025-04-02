@@ -1,16 +1,9 @@
-using Newtonsoft.Json;
-namespace Bocaito.Models
+using System;
 
+public class Usuario
 {
-    public class Usuario
-    {
-        [JsonProperty("id")]
-        public Guid Id { get; set; }
-
-        [JsonProperty("Nombre")]
-        public string Nombre { get; set; }
-
-        [JsonProperty("Apellido")]
-        public string Apellido { get; set; }
-    }
+    public Guid Id { get; set; }
+    public string Nombre { get; set; }
+    public string Apellido { get; set; }
+    public string Telefono { get; set; }
 }

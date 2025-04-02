@@ -7,9 +7,14 @@
     Shell.FlyoutBehavior="Flyout"
     Title="Bocaito">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    <ShellContent Title="LogIn" ContentTemplate="{DataTemplate local:LogInPage}" Route="login" />
+    <ShellContent Title="SignUp" ContentTemplate="{DataTemplate local:SignUpPage}" Route="signup" />
+    <ShellContent Title="ForgotPassword" ContentTemplate="{DataTemplate local:ForgotPasswordPage}" Route="forgotpassword" />
+    <ShellContent Title="ForgotPassword" ContentTemplate="{DataTemplate local:ForgotPassword2Page}" Route="forgotpassword2" />
+    <!--<TabBar>
+        <ShellContent Title="Menu" ContentTemplate="{DataTemplate local:MenuPage}" />
+        <ShellContent Title="Pedidos" ContentTemplate="{DataTemplate local:PedidosPage}" />
+        <ShellContent Title="Reservas" ContentTemplate="{DataTemplate local:ReservasPage}" />
+        <ShellContent Title="Cuenta" ContentTemplate="{DataTemplate local:CuentaPage}" />
+    </TabBar> -->
 </Shell>
