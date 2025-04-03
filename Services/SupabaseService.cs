@@ -1,7 +1,9 @@
 using System;
 using System.Threading.Tasks;
+using Bocaito.Models;
 using Microsoft.Maui.Controls;
 using Supabase.Gotrue;
+using Supabase.Postgrest.Attributes;
 
 namespace Bocaito.Services
 {
@@ -32,6 +34,45 @@ namespace Bocaito.Services
                 return false;
             }
         }
+       public async Task<Usuario?> CreateUsuario(string nombre, string apellido, string telefono, string uid)
+        {
+            if (_client == null)
+                throw new InvalidOperationException("Supabase client is not initialized");
+            
+            var usuario = new Usuario
+            {
+                Nombre = nombre,
+                Apellido = apellido,
+                Telefono = telefono,
+                Id_usuario = uid
+            };
+            
+            // Insertar en la tabla usuarios
+            var response = await _client.From
+                <Usuario>()
+                .Insert(usuario);
+
+            // Verificar si la operación fue exitosa
+            return response.Models.FirstOrDefault();
+        }
+/*public async Task<Usuario?> CreateUsuario()
+{
+    if (_client == null)
+        throw new InvalidOperationException("Supabase client is not initialized");
+
+    var usuario = new Usuario
+    {
+        Nombre = "Prueba",
+        Apellido = "Test",
+        Telefono = "8091234567",
+        Id_usuario = "ejemplo"
+    };
+
+    var response = await _client.From<Usuario>().Insert(usuario);
+
+    // Verifica si la inserción fue exitosa y devuelve el primer usuario insertado
+    return response.Models.FirstOrDefault();
+}*/
 
         // Métodos de autenticación
         public async Task<Session?> SignIn(string email, string password)
@@ -114,3 +155,4 @@ namespace Bocaito.Services
         }
     }
 }
+

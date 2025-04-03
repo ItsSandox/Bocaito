@@ -78,6 +78,3 @@ D:\Bocaito\Bocaito\obj\Debug\net9.0-ios\iossimulator-x64\Bocaito.AssemblyInfoInp
 D:\Bocaito\Bocaito\obj\Debug\net9.0-ios\iossimulator-x64\Bocaito.AssemblyInfo.cs
 D:\Bocaito\Bocaito\obj\Debug\net9.0-ios\iossimulator-x64\Bocaito.csproj.CoreCompileInputs.cache
 D:\Bocaito\Bocaito\obj\Debug\net9.0-ios\iossimulator-x64\Bocaito.sourcelink.json
-D:\Bocaito\Bocaito\obj\Debug\net9.0-ios\iossimulator-x64\Bocaito.dll
-D:\Bocaito\Bocaito\obj\Debug\net9.0-ios\iossimulator-x64\refint\Bocaito.dll
-D:\Bocaito\Bocaito\obj\Debug\net9.0-ios\iossimulator-x64\Bocaito.pdb

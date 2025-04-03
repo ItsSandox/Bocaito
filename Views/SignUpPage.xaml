@@ -73,6 +73,23 @@
                     HasShadow="False">
 
                 <Entry
+                    x:Name="telefono"
+                    Margin="10,0,10,0"
+                    FontFamily="SFProRegular"
+                    FontSize="20"
+                    Placeholder="Teléfono"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center"
+                    /> 
+                </Frame>
+                <Frame 
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Input}, Dark={StaticResource InputDark}}" 
+                    Padding="0" Margin="30,0,30,10" 
+                    CornerRadius="15"
+                    BorderColor="Transparent"
+                    HasShadow="False">
+
+                <Entry
                     x:Name="nombre"
                     Margin="10,0,10,0"
                     FontFamily="SFProRegular"
