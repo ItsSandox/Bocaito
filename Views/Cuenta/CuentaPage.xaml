@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Bocaito.CuentaPage"
+             Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                x:Name="usuarioLabel"
+                Margin="20,10,20,0"
+                FontFamily="SFProBold"
+                Grid.Row="0"
+                Text="Placeholder"
+                FontSize="25" />
+
+            <Grid Grid.Row="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="20,2,0,0"
+                        Source="ubicacion.svg"
+                        HeightRequest="15"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center" />
+                    <Label
+                        Margin="13,0,0,0"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Text="Direcciones"
+                        VerticalOptions="Center"
+                        FontFamily="SFProLight"
+                        FontSize="18" />
+                </Grid>
+
+                <BoxView 
+                    Grid.Row="1"
+                    HeightRequest="1"
+                    BackgroundColor="{StaticResource Input}"
+                    Margin="20,10,20,10"
+                    VerticalOptions="End" />
+
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="20,2,0,0"
+                        Source="notificaciones.svg"
+                        HeightRequest="15"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center" />
+                    <Label
+                        Margin="12,0,0,0"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Text="Notificaciones"
+                        VerticalOptions="Center"
+                        FontFamily="SFProLight"
+                        FontSize="18" />
+                </Grid>
+                
+                <BoxView 
+                    Grid.Row="3"
+                    HeightRequest="1"
+                    BackgroundColor="{StaticResource Input}"
+                    Margin="20,10,20,10"
+                    VerticalOptions="End" />
+
+                    <Grid Grid.Row="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Margin="20,2,0,0"
+                            Source="cerrar_sesion.svg"
+                            HeightRequest="15"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center" />
+                        <Label
+                            Margin="10,0,0,0"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Text="Cerrar sesión"
+                            VerticalOptions="Center"
+                            FontFamily="SFProLight"
+                            FontSize="18" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnCerrarSesionClicked" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>

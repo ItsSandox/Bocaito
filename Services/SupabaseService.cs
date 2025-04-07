@@ -1,9 +1,11 @@
 using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Bocaito.Models;
 using Microsoft.Maui.Controls;
 using Supabase.Gotrue;
 using Supabase.Postgrest.Attributes;
+
 
 namespace Bocaito.Services
 {
@@ -34,7 +36,37 @@ namespace Bocaito.Services
                 return false;
             }
         }
-       public async Task<Usuario?> CreateUsuario(string nombre, string apellido, string telefono, string uid)
+        //Métodos de consulta de datos
+    public Usuario GetCurrentUsuario()
+    {
+        if (_client == null)
+            throw new InvalidOperationException("Supabase client is not initialized");
+        
+        try 
+        {
+            // Obtener el usuario autenticado actual
+            var currentUser = _client.Auth.CurrentUser;
+            if (currentUser == null || currentUser.UserMetadata == null)
+                return null; // No hay usuario autenticado o sin metadatos
+            
+            // Crear y retornar un objeto Usuario con los metadatos
+            return new Usuario
+            {
+                user_id = currentUser.Id,
+                Nombre = currentUser.UserMetadata.TryGetValue("nombre", out object nombre) && nombre != null ? nombre.ToString() : string.Empty,
+                Apellido = currentUser.UserMetadata.TryGetValue("apellido", out object apellido) && apellido != null ? apellido.ToString() : string.Empty,
+                Telefono = currentUser.UserMetadata.TryGetValue("telefono", out object telefono) && telefono != null ? telefono.ToString() : string.Empty
+            };
+        }
+        catch (Exception ex)
+        {
+            Application.Current.MainPage.DisplayAlert("Error",$"Error al obtener el usuario actual: {ex.Message}","Ok");
+            return null;
+        }
+    }
+        //Métodos de insertar datos
+
+    public async Task<Usuario?> CreateUsuario(string nombre, string apellido, string telefono ,string uid)
         {
             if (_client == null)
                 throw new InvalidOperationException("Supabase client is not initialized");
@@ -44,7 +76,7 @@ namespace Bocaito.Services
                 Nombre = nombre,
                 Apellido = apellido,
                 Telefono = telefono,
-                Id_usuario = uid
+                user_id = uid
             };
             
             // Insertar en la tabla usuarios
@@ -55,48 +87,162 @@ namespace Bocaito.Services
             // Verificar si la operación fue exitosa
             return response.Models.FirstOrDefault();
         }
-/*public async Task<Usuario?> CreateUsuario()
-{
-    if (_client == null)
-        throw new InvalidOperationException("Supabase client is not initialized");
-
-    var usuario = new Usuario
-    {
-        Nombre = "Prueba",
-        Apellido = "Test",
-        Telefono = "8091234567",
-        Id_usuario = "ejemplo"
-    };
-
-    var response = await _client.From<Usuario>().Insert(usuario);
-
-    // Verifica si la inserción fue exitosa y devuelve el primer usuario insertado
-    return response.Models.FirstOrDefault();
-}*/
 
         // Métodos de autenticación
+    public async Task<Session?> RestoreSession()
+    {
+        if (_client == null)
+            throw new InvalidOperationException("Supabase client is not initialized");
+        
+        try
+        {
+            // Obtener el access token almacenado
+            string? accessToken = await SecureStorage.GetAsync("access_token");
+            string? refresh_token = await SecureStorage.GetAsync("refresh_token");
+            
+            if (string.IsNullOrEmpty(accessToken))
+                return null; // No hay token guardado
+            
+            // Verificar si el token es válido
+            try 
+            {
+                var user = await _client.Auth.GetUser(accessToken);
+                await _client.Auth.SetSession(accessToken, refresh_token, false);
+                
+                // Si llegamos aquí, el token es válido
+                return new Session { AccessToken = accessToken };
+            }
+            catch
+            {
+                // El token ha expirado o es inválido
+                SignOut(); // Cerrar sesión
+                return null;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al restaurar sesión: {ex.Message}");
+            SecureStorage.Remove("access_token");
+            SecureStorage.Remove("refresh_token");
+            await Application.Current.MainPage.DisplayAlert("Error",$"Error al restaurar sesión: {ex.Message}","Ok");
+            return null;
+        }
+    }
+        public async Task<bool> RequestPasswordRecovery(string email)
+        {
+            try
+            {
+                // Enviar correo de recuperación de contraseña
+                await _client.Auth.ResetPasswordForEmail(email);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", 
+                $"No se pudo recuperar la contraseña: {ex}", 
+                "OK");
+                return false;
+            }
+        }
+        public async Task<bool> UpdatePassword(string email, string otp, string newPassword){
+            try{
+                var result = await _client.Auth.VerifyOTP(email,otp, Constants.EmailOtpType.Email);
+                if(result != null){
+                    await _client.Auth.Update(new UserAttributes
+                {
+                    Password = newPassword
+                });
+                    return true;
+
+                }else{
+                    await Application.Current.MainPage.DisplayAlert("Error", 
+                    $"No se pudo cambiar la contraseña: {result}", 
+                    "OK");
+                return false;
+                }
+
+            }catch(Exception ex){
+                await Application.Current.MainPage.DisplayAlert("Error", 
+                $"estas en el ex de update password No se pudo cambiar la contraseña: {ex}", 
+                "OK");
+                return false;
+            }
+        }
         public async Task<Session?> SignIn(string email, string password)
         {
             if (_client == null)
                 throw new InvalidOperationException("Supabase client is not initialized");
-                
-            return await _client.Auth.SignIn(email, password);
+            try
+            {
+                var response = await _client.Auth.SignIn(email, password);
+            if (response != null)
+                {
+                    await StoreSessionToken(response);
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {   
+                await Application.Current.MainPage.DisplayAlert("Error", 
+                $"No se pudo iniciar sesión: {ex}", 
+                "OK");
+                throw;
+            }
         }
 
-        public async Task<Session?> SignUp(string email, string password)
+    public async Task<Session?> SignUp(string email, string password, string nombre, string apellido, string telefono)
+    {
+        if (_client == null)
+            throw new InvalidOperationException("Supabase client is not initialized");
+        
+        try
         {
-            if (_client == null)
-                throw new InvalidOperationException("Supabase client is not initialized");
-                
-            return await _client.Auth.SignUp(email, password);
+            // Crear objeto de metadatos
+            var metadata = new Dictionary<string, object>
+            {
+                { "nombre", nombre },
+                { "apellido", apellido },
+                { "telefono", telefono }
+            };
+            
+            // Registrar usuario con metadatos
+            var options = new SignUpOptions { Data = metadata };
+            var authResponse = await _client.Auth.SignUp(email, password, options);
+            
+            if (authResponse?.User != null)
+            {
+                return authResponse;
+            }
+            return null;
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al registrar usuario: {ex}");
+            throw;
+        }
+    }
+        
         
         public async Task SignOut()
         {
             if (_client == null)
                 throw new InvalidOperationException("Supabase client is not initialized");
+            try
+            {
+                await _client.Auth.SignOut();
+                SecureStorage.Remove("access_token");
+                SecureStorage.Remove("refresh_token");
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", 
+                $"No se pudo cerrar sesión: {ex}", 
+                "OK");
+                
+                throw;
+            }
             
-            await _client.Auth.SignOut();
         }
         
         public Session? CurrentSession
@@ -152,6 +298,15 @@ namespace Bocaito.Services
                 Console.WriteLine($"Error al actualizar usuario: {ex.Message}");
                 return null;
             }
+        }
+
+        //aux
+        public async Task StoreSessionToken(Session session)
+        {
+            await SecureStorage.SetAsync("access_token", session.AccessToken);
+            await SecureStorage.SetAsync("refresh_token", session.RefreshToken);
+            // Opcionalmente guardar el email si lo necesitas
+            // await SecureStorage.SetAsync("email", email);
         }
     }
 }

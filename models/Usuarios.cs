@@ -18,8 +18,8 @@ namespace Bocaito.Models
         [Column("Telefono")]
         public string Telefono { get; set; }
 
-        [Column("Id_usuario")]
-        public string Id_usuario { get; set; }
+        [Column("user_id")]
+        public string user_id { get; set; }
 
     }
 }

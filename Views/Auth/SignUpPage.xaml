@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Bocaito.SignUpPage"
+             Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <!-- Logo -->
+            <Image
+                Margin="-25,50,0,0"
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Source="bocaito.svg"
+                HeightRequest="110"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"/>
+
+            <Label
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Padding="0,150,0,0"
+                Text="BOCAITO"
+                TextColor="{StaticResource Primary}"
+                FontFamily="RammettoOneRegular"
+                FontSize="33"
+                HorizontalOptions="Center"/>
+            
+            <Label
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Padding="0,190,0,10"
+                Text="RESTAURANTE"
+                TextColor="{StaticResource Secondary}"
+                FontFamily="MontserratThin"
+                FontSize="16.5"
+                HorizontalOptions="Center"
+                CharacterSpacing="7"
+                VerticalOptions="Start"/>
+            <!-- Inputs -->
+            <StackLayout Grid.Row="1" Grid.ColumnSpan="2" VerticalOptions="Center">
+                <Frame 
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Input}, Dark={StaticResource InputDark}}" 
+                    Padding="0" Margin="20,0,20,10" 
+                    CornerRadius="15"
+                    BorderColor="Transparent"
+                    HasShadow="False">
+
+                <Entry
+                    x:Name="correo"
+                    Margin="10,0,10,0"
+                    FontFamily="SFProRegular"
+                    FontSize="20"
+                    Placeholder="Correo electrónico"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center"
+                    /> 
+                </Frame>
+                <Frame 
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Input}, Dark={StaticResource InputDark}}" 
+                    Padding="0" Margin="20,0,20,10" 
+                    CornerRadius="15"
+                    BorderColor="Transparent"
+                    HasShadow="False">
+
+                <Entry
+                    x:Name="telefono"
+                    Margin="10,0,10,0"
+                    FontFamily="SFProRegular"
+                    FontSize="20"
+                    Placeholder="Teléfono"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center"
+                    /> 
+                </Frame>
+                <Frame 
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Input}, Dark={StaticResource InputDark}}" 
+                    Padding="0" Margin="20,0,20,10" 
+                    CornerRadius="15"
+                    BorderColor="Transparent"
+                    HasShadow="False">
+
+                <Entry
+                    x:Name="nombre"
+                    Margin="10,0,10,0"
+                    FontFamily="SFProRegular"
+                    FontSize="20"
+                    Placeholder="Nombre"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center"
+                    /> 
+                </Frame>
+                <Frame 
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Input}, Dark={StaticResource InputDark}}" 
+                    Padding="0" Margin="20,0,20,10" 
+                    CornerRadius="15"
+                    BorderColor="Transparent"
+                    HasShadow="False">
+
+                <Entry
+                    x:Name="apellido"
+                    Margin="10,0,10,0"
+                    FontFamily="SFProRegular"
+                    FontSize="20"
+                    Placeholder="Apellido"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center"
+                    /> 
+                </Frame>
+                <Frame 
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Input}, Dark={StaticResource InputDark}}" 
+                    Padding="0" Margin="20,0,20,10" 
+                    BorderColor="Transparent"
+                    CornerRadius="15" 
+                    HasShadow="False">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />  
+                                <ColumnDefinition Width="Auto" /> 
+                            </Grid.ColumnDefinitions>
+
+                            <Entry
+                                x:Name="contraseña"
+                                Margin="10,0,10,0"
+                                FontFamily="SFProRegular"
+                                FontSize="20"
+                                Placeholder="Contraseña"
+                                IsPassword="True"
+                                HorizontalOptions="Fill"
+                                VerticalOptions="Center" 
+                                Grid.Row="0"
+                                Grid.Column="0" />
+
+                            <ImageButton
+                                x:Name="btnEye"
+                                Source="eye.svg"
+                                Margin="0,0,10,0"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                WidthRequest="30"
+                                HeightRequest="30"
+                                BackgroundColor="Transparent"
+                                IsEnabled="True"
+                                Clicked="OnButtonEyeClicked"
+                                Grid.Row="0"
+                                Grid.Column="1" />
+                    </Grid>
+                </Frame>
+                <Button
+                    x:Name="signup"
+                    CornerRadius="15"
+                    Margin="20,0,20,0"
+                    FontFamily="SFProBold"
+                    FontSize="20"
+                    Text="Crear cuenta" 
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    HorizontalOptions="Fill" 
+                    VerticalOptions="Center"
+                    Clicked="OnSignUpClicked"/>
+                    
+                <ActivityIndicator
+                    x:Name="loadingIndicator"
+                    IsRunning="False"
+                    IsVisible="False"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Margin="0,10,0,10" />
+                <Frame
+                    BackgroundColor="Transparent" 
+                    Padding="0" Margin="30,0,30,10" 
+                    CornerRadius="0"
+                    BorderColor="Transparent"
+                    HasShadow="False"
+                    HorizontalOptions="Center">
+                    
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />  
+                            <ColumnDefinition Width="Auto" /> 
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Padding="0,10,0,0"
+                            Text="¿Ya tienes una cuenta?"
+                            TextColor="{StaticResource TextColor}"
+                            FontFamily="SFProBold"
+                            FontSize="14"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Start"
+                            Grid.Row="0"
+                            Grid.Column="0"/>
+                        <Label
+                            Padding="10,10,0,0"
+                            Text="Iniciar sesión"
+                            TextColor="{StaticResource Primary}"
+                            FontFamily="SFProBold"
+                            FontSize="14"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Start"
+                            Grid.Row="0"
+                            Grid.Column="1">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnLogInClicked" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </Frame>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+
+
+</ContentPage>
