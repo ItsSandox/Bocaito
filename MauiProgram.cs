@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Bocaito.Services;
+using CommunityToolkit.Maui;
 
 namespace Bocaito;
 
@@ -10,6 +11,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("SF-Pro-Display-Regular.otf", "SFProRegular");

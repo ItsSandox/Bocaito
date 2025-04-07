@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Bocaito.CuentaPage"
              Shell.NavBarIsVisible="False">
 
@@ -35,7 +36,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="40" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -63,12 +64,12 @@
                     Grid.Row="1"
                     HeightRequest="1"
                     BackgroundColor="{StaticResource Input}"
-                    Margin="20,10,20,10"
+                    Margin="20,0,20,0"
                     VerticalOptions="End" />
 
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="40" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -96,37 +97,40 @@
                     Grid.Row="3"
                     HeightRequest="1"
                     BackgroundColor="{StaticResource Input}"
-                    Margin="20,10,20,10"
+                    Margin="20,0,20,0"
                     VerticalOptions="End" />
 
-                    <Grid Grid.Row="4">
+                    <Grid Grid.Row="4" BackgroundColor="White" >
+                            <Grid.Behaviors>
+                                <toolkit:TouchBehavior 
+                                    TouchGestureCompleted="OnCerrarSesionClicked"
+                                    PressedBackgroundColor="{StaticResource Input}"
+                                />
+                            </Grid.Behaviors>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="40" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
+
                         <Image
                             Grid.Row="0"
                             Grid.Column="0"
-                            Margin="20,2,0,0"
+                            Margin="22,2,0,0"
                             Source="cerrar_sesion.svg"
                             HeightRequest="15"
                             HorizontalOptions="Start"
                             VerticalOptions="Center" />
                         <Label
-                            Margin="10,0,0,0"
+                            Margin="8,0,0,0"
                             Grid.Column="1"
                             Grid.Row="0"
                             Text="Cerrar sesión"
                             VerticalOptions="Center"
                             FontFamily="SFProLight"
                             FontSize="18" />
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Tapped="OnCerrarSesionClicked" />
-                        </Grid.GestureRecognizers>
                     </Grid>
             </Grid>
         </Grid>
