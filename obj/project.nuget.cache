@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "M5/fKcjOix0=",
+  "dgSpecHash": "+7ls1zQXJ5w=",
   "success": true,
   "projectFilePath": "D:\\Bocaito\\Bocaito\\Bocaito.csproj",
   "expectedPackageFiles": [
@@ -35,7 +35,7 @@
     "C:\\Users\\derie\\.nuget\\packages\\microsoft.maui.graphics\\9.0.14\\microsoft.maui.graphics.9.0.14.nupkg.sha512",
     "C:\\Users\\derie\\.nuget\\packages\\microsoft.maui.graphics.win2d.winui.desktop\\9.0.14\\microsoft.maui.graphics.win2d.winui.desktop.9.0.14.nupkg.sha512",
     "C:\\Users\\derie\\.nuget\\packages\\microsoft.maui.resizetizer\\9.0.14\\microsoft.maui.resizetizer.9.0.14.nupkg.sha512",
-    "C:\\Users\\derie\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.2\\microsoft.net.illink.tasks.9.0.2.nupkg.sha512",
+    "C:\\Users\\derie\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.3\\microsoft.net.illink.tasks.9.0.3.nupkg.sha512",
     "C:\\Users\\derie\\.nuget\\packages\\microsoft.web.webview2\\1.0.2792.45\\microsoft.web.webview2.1.0.2792.45.nupkg.sha512",
     "C:\\Users\\derie\\.nuget\\packages\\microsoft.windows.sdk.buildtools\\10.0.22621.756\\microsoft.windows.sdk.buildtools.10.0.22621.756.nupkg.sha512",
     "C:\\Users\\derie\\.nuget\\packages\\microsoft.windowsappsdk\\1.6.240923002\\microsoft.windowsappsdk.1.6.240923002.nupkg.sha512",

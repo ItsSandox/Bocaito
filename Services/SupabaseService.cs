@@ -37,6 +37,117 @@ namespace Bocaito.Services
             }
         }
         //Métodos de consulta de datos
+    public async Task<Direccion> ObtenerDireccionUsuarioAsync()
+    {
+        if (_client == null)
+            throw new InvalidOperationException("Supabase client is not initialized");
+        
+        try 
+        {
+            // Obtener el usuario autenticado actual
+            var currentUser = _client.Auth.CurrentUser;
+            if (currentUser == null)
+                return null;
+
+            // Buscar la dirección del usuario en la tabla de direcciones
+            var direccionQuery = await _client
+                .From<Direccion>()
+                .Where(d => d.UserId == currentUser.Id)
+                .Get();
+
+            // Devolver la primera dirección encontrada (asumiendo que el usuario tiene una dirección principal)
+            return direccionQuery.Models.FirstOrDefault();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al obtener la dirección del usuario: {ex.Message}");
+            await Application.Current.MainPage.DisplayAlert(
+                "Error", 
+                "No se pudo obtener la dirección", 
+                "Ok"
+            );
+            return null;
+        }
+    }
+
+
+
+    public async Task<List<CategoriaConProductos>> ObtenerCategoriasConProductosAsync()
+    {
+        if (_client == null)
+            throw new InvalidOperationException("Supabase client is not initialized");
+
+        try
+        {
+            // Obtener todas las categorías
+            var categorias = await _client
+                .From<Categoria>()
+                .Get();
+
+            var resultado = new List<CategoriaConProductos>();
+
+            // Para cada categoría, obtener sus productos
+            foreach (var categoria in categorias.Models)
+            {
+                // Obtener productos de la categoría
+                var productos = await _client
+                    .From<Producto>()
+                    .Where(p => p.CategoriaId == categoria.Id)
+                    .Get();
+
+                var productosConFoto = new List<Producto>();
+
+                // Para cada producto, obtener su foto
+                foreach (var producto in productos.Models)
+                {
+                    // Obtener la foto del producto
+                    var fotoQuery = await _client
+                        .From<Foto>()
+                        .Where(f => f.Id == producto.FotoId)
+                        .Get();
+
+                    var productoConFoto = new Producto
+                    {
+                        Id = producto.Id,
+                        Nombre = producto.Nombre,
+                        Descripcion = producto.Descripcion,
+                        Precio = producto.Precio,
+                        Foto = fotoQuery.Models.FirstOrDefault() != null 
+                            ? new Foto { Enlace = fotoQuery.Models.First().Enlace } 
+                            : null
+                    };
+
+                    productosConFoto.Add(productoConFoto);
+                }
+
+                resultado.Add(new CategoriaConProductos
+                {
+                    CategoriaNombre = categoria.Nombre,
+                    Productos = productosConFoto
+                });
+            }
+
+            return resultado;
+        }
+        catch (Exception ex)
+        {
+            // Manejar y registrar el error
+            Console.WriteLine($"Error al obtener categorías con productos: {ex.Message}");
+            await Application.Current.MainPage.DisplayAlert(
+                "Error", 
+                "No se pudieron cargar los productos", 
+                "Ok"
+            );
+            return new List<CategoriaConProductos>();
+        }
+    }
+
+    // Clase para representar categorías con sus productos
+    public class CategoriaConProductos
+    {
+        public string CategoriaNombre { get; set; }
+        public List<Producto> Productos { get; set; }
+    }
     public Usuario GetCurrentUsuario()
     {
         if (_client == null)

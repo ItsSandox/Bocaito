@@ -8,6 +8,7 @@ obj\Debug\net9.0-android\resizetizer\r\drawable-hdpi\dotnet_bot.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-hdpi\eye.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-hdpi\eye_closed.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-hdpi\flecha.png
+obj\Debug\net9.0-android\resizetizer\r\drawable-hdpi\flecha_abajo.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-hdpi\menu.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-hdpi\menu_active.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-hdpi\notificaciones.png
@@ -27,6 +28,7 @@ obj\Debug\net9.0-android\resizetizer\r\drawable-mdpi\dotnet_bot.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-mdpi\eye.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-mdpi\eye_closed.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-mdpi\flecha.png
+obj\Debug\net9.0-android\resizetizer\r\drawable-mdpi\flecha_abajo.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-mdpi\menu.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-mdpi\menu_active.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-mdpi\notificaciones.png
@@ -46,6 +48,7 @@ obj\Debug\net9.0-android\resizetizer\r\drawable-xhdpi\dotnet_bot.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xhdpi\eye.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xhdpi\eye_closed.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xhdpi\flecha.png
+obj\Debug\net9.0-android\resizetizer\r\drawable-xhdpi\flecha_abajo.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xhdpi\menu.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xhdpi\menu_active.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xhdpi\notificaciones.png
@@ -65,6 +68,7 @@ obj\Debug\net9.0-android\resizetizer\r\drawable-xxhdpi\dotnet_bot.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xxhdpi\eye.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xxhdpi\eye_closed.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xxhdpi\flecha.png
+obj\Debug\net9.0-android\resizetizer\r\drawable-xxhdpi\flecha_abajo.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xxhdpi\menu.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xxhdpi\menu_active.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xxhdpi\notificaciones.png
@@ -84,6 +88,7 @@ obj\Debug\net9.0-android\resizetizer\r\drawable-xxxhdpi\dotnet_bot.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xxxhdpi\eye.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xxxhdpi\eye_closed.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xxxhdpi\flecha.png
+obj\Debug\net9.0-android\resizetizer\r\drawable-xxxhdpi\flecha_abajo.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xxxhdpi\menu.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xxxhdpi\menu_active.png
 obj\Debug\net9.0-android\resizetizer\r\drawable-xxxhdpi\notificaciones.png
