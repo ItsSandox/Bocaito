@@ -88,6 +88,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = Bocaito.Views.MainPage.xam
 build_metadata.AdditionalFiles.TargetPath = Views\MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\MainPage.xaml
 
+[D:/Bocaito/Bocaito/Views/Menu/Carrito/CarritoPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Bocaito.Views.Menu.Carrito.CarritoPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Menu\Carrito\CarritoPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Menu\Carrito\CarritoPage.xaml
+
 [D:/Bocaito/Bocaito/Views/Menu/MenuPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Bocaito.Views.Menu.MenuPage.xaml

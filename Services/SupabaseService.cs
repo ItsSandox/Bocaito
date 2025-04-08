@@ -69,9 +69,6 @@ namespace Bocaito.Services
             return null;
         }
     }
-
-
-
     public async Task<List<CategoriaConProductos>> ObtenerCategoriasConProductosAsync()
     {
         if (_client == null)
@@ -141,8 +138,6 @@ namespace Bocaito.Services
             return new List<CategoriaConProductos>();
         }
     }
-
-    // Clase para representar categorías con sus productos
     public class CategoriaConProductos
     {
         public string CategoriaNombre { get; set; }
@@ -176,7 +171,59 @@ namespace Bocaito.Services
         }
     }
         //Métodos de insertar datos
+    public async Task<bool> GuardarCarritoEnBaseDeDatosAsync(List<CarritoItemViewModel> items)
+{
+    if (_client == null)
+        throw new InvalidOperationException("Supabase client is not initialized");
+    
+    try 
+    {
+        // Obtener el usuario autenticado actual
+        var currentUser = _client.Auth.CurrentUser;
+        if (currentUser == null)
+            return false;
 
+        // Crear un nuevo carrito
+        var carrito = new Carrito
+        {
+            UserId = currentUser.Id,
+            Estado = "pendiente", // Estado inicial
+            FechaCreacion = DateTime.Now
+        };
+        
+        // Insertar el carrito
+        var nuevoCarritoResult = await _client
+            .From<Carrito>()
+            .Insert(carrito);
+        
+        if (nuevoCarritoResult.Models.Count == 0)
+            return false;
+        
+        var nuevoCarrito = nuevoCarritoResult.Models.First();
+        
+        // Insertar los items del carrito
+        foreach (var item in items)
+        {
+            var carritoItem = new CarritoItem
+            {
+                CarritoId = nuevoCarrito.Id,
+                ProductoId = item.Producto.Id,
+                Cantidad = item.Cantidad
+            };
+            
+            await _client
+                .From<CarritoItem>()
+                .Insert(carritoItem);
+        }
+        
+        return true;
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error al guardar carrito: {ex.Message}");
+        return false;
+    }
+}
     public async Task<Usuario?> CreateUsuario(string nombre, string apellido, string telefono ,string uid)
         {
             if (_client == null)
@@ -198,7 +245,6 @@ namespace Bocaito.Services
             // Verificar si la operación fue exitosa
             return response.Models.FirstOrDefault();
         }
-
         // Métodos de autenticación
     public async Task<Session?> RestoreSession()
     {
@@ -301,40 +347,37 @@ namespace Bocaito.Services
                 throw;
             }
         }
-
-    public async Task<Session?> SignUp(string email, string password, string nombre, string apellido, string telefono)
-    {
-        if (_client == null)
-            throw new InvalidOperationException("Supabase client is not initialized");
-        
-        try
+        public async Task<Session?> SignUp(string email, string password, string nombre, string apellido, string telefono)
         {
-            // Crear objeto de metadatos
-            var metadata = new Dictionary<string, object>
-            {
-                { "nombre", nombre },
-                { "apellido", apellido },
-                { "telefono", telefono }
-            };
+            if (_client == null)
+                throw new InvalidOperationException("Supabase client is not initialized");
             
-            // Registrar usuario con metadatos
-            var options = new SignUpOptions { Data = metadata };
-            var authResponse = await _client.Auth.SignUp(email, password, options);
-            
-            if (authResponse?.User != null)
+            try
             {
-                return authResponse;
+                // Crear objeto de metadatos
+                var metadata = new Dictionary<string, object>
+                {
+                    { "nombre", nombre },
+                    { "apellido", apellido },
+                    { "telefono", telefono }
+                };
+                
+                // Registrar usuario con metadatos
+                var options = new SignUpOptions { Data = metadata };
+                var authResponse = await _client.Auth.SignUp(email, password, options);
+                
+                if (authResponse?.User != null)
+                {
+                    return authResponse;
+                }
+                return null;
             }
-            return null;
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al registrar usuario: {ex}");
+                throw;
+            }
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error al registrar usuario: {ex}");
-            throw;
-        }
-    }
-        
-        
         public async Task SignOut()
         {
             if (_client == null)
@@ -354,8 +397,7 @@ namespace Bocaito.Services
                 throw;
             }
             
-        }
-        
+        }  
         public Session? CurrentSession
         {
             get
@@ -366,7 +408,6 @@ namespace Bocaito.Services
                 return _client.Auth.CurrentSession;
             }
         }
-        
         public User? CurrentUser
         {
             get
@@ -377,7 +418,6 @@ namespace Bocaito.Services
                 return _client.Auth.CurrentUser;
             }
         }
-
         public async Task<bool> ResetPasswordForEmail(string email)
         {
             if (_client == null)
@@ -394,7 +434,6 @@ namespace Bocaito.Services
                 return false;
             }
         }
-
         public async Task<User?> UpdateUser(UserAttributes attributes)
         {
             if (_client == null)
@@ -410,7 +449,6 @@ namespace Bocaito.Services
                 return null;
             }
         }
-
         //aux
         public async Task StoreSessionToken(Session session)
         {

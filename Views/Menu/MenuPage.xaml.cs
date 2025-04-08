@@ -77,6 +77,26 @@ public partial class MenuPage : ContentPage
     }
 
     // Eventos de botones
+    
+    private async void OnSeleccionarProductoClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            // Obtener el Grid que contiene el producto
+            if (sender is Grid grid && grid.BindingContext is Producto producto)
+            {
+                // Agregar el producto al carrito local
+                CarritoPage.AgregarProductoAlCarrito(producto);
+                
+                // Mostrar un mensaje de éxito
+                await DisplayAlert("Éxito", $"{producto.Nombre} agregado al carrito", "OK");
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
+        }
+    }
     private void OnFlechaAbajoClicked(object sender, EventArgs e)
     {
         // Implementar lógica para flecha abajo
@@ -87,8 +107,8 @@ public partial class MenuPage : ContentPage
         // Implementar lógica de notificaciones
     }
 
-    private void OnCarritoClicked(object sender, EventArgs e)
+    private async void OnCarritoClicked(object sender, EventArgs e)
     {
-        // Implementar lógica de carrito
+        await Shell.Current.GoToAsync(nameof(CarritoPage));
     }
 }

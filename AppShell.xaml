@@ -11,22 +11,22 @@
     <ShellContent Title="SignUp" ContentTemplate="{DataTemplate local:SignUpPage}" Route="signup" />
     <ShellContent Title="ForgotPassword" ContentTemplate="{DataTemplate local:ForgotPasswordPage}" Route="forgotpassword" />
     <ShellContent Title="ForgotPassword2" ContentTemplate="{DataTemplate local:ForgotPassword2Page}" Route="forgotpassword2" />
-    
-<TabBar>
-    <Tab Title="Menu" Icon="menu.svg">
-        <ShellContent Route="menu" ContentTemplate="{DataTemplate local:MenuPage}" />
-    </Tab>
-    
-    <Tab Title="Pedidos" Icon="pedidos.svg">
-        <ShellContent Route="pedidos" ContentTemplate="{DataTemplate local:PedidosPage}" />
-    </Tab>
-    
-    <Tab Title="Reservas" Icon="reservas.svg">
-        <ShellContent Route="reservas" ContentTemplate="{DataTemplate local:ReservasPage}" />
-    </Tab>
-    
-    <Tab Title="Cuenta" Icon="cuenta.svg">
-        <ShellContent Route="cuenta" ContentTemplate="{DataTemplate local:CuentaPage}" />
-    </Tab>
-</TabBar>
+
+    <TabBar  >
+        <Tab Title="Menu" Icon="menu.svg">
+            <ShellContent Route="menu" ContentTemplate="{DataTemplate local:MenuPage}" />
+        </Tab>
+        
+        <Tab Title="Pedidos" Icon="pedidos.svg">
+            <ShellContent Route="pedidos" ContentTemplate="{DataTemplate local:PedidosPage}" />
+        </Tab>
+        
+        <Tab Title="Reservas" Icon="reservas.svg">
+            <ShellContent Route="reservas" ContentTemplate="{DataTemplate local:ReservasPage}" />
+        </Tab>
+        
+        <Tab Title="Cuenta" Icon="cuenta.svg">
+            <ShellContent Route="cuenta" ContentTemplate="{DataTemplate local:CuentaPage}" />
+        </Tab>
+    </TabBar>
 </Shell>

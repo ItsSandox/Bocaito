@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Bocaito.CarritoPage"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Barra superior -->
+        <Grid Grid.Row="0" Padding="0,10,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ImageButton
+                Grid.Row="0"
+                Grid.Column="0"
+                x:Name="btnRegresar"
+                Source="flecha.svg"
+                WidthRequest="20"
+                HeightRequest="20"
+                Margin="20,0,0,0"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
+                Clicked="OnRegresarClicked"/>
+
+            <Label 
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="Tu carrito"
+                FontFamily="SFProBold"
+                FontSize="20"
+                Margin="0,0,0,10"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
+
+            <ImageButton
+                Grid.Row="0"
+                Grid.Column="2"
+                x:Name="btnVaciarCarrito"
+                Source="eliminar.svg"
+                WidthRequest="20"
+                HeightRequest="20"
+                Margin="0,0,20,0"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                Clicked="OnVaciarCarritoClicked"/>
+            <BoxView 
+                    Grid.Row="1"
+                    Grid.ColumnSpan="3"
+                    HeightRequest="1"
+                    BackgroundColor="Black"
+                    Margin="0,0,0,0"
+                    VerticalOptions="End" />
+        </Grid>
+
+        <!-- Lista de Productos en el Carrito -->
+        <CollectionView 
+            Grid.Row="1"
+            x:Name="carritoCollectionView"
+            ItemsSource="{Binding ItemsCarrito}"
+            SelectionMode="None"
+            Margin="0,10,0,0">
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid 
+                        Padding="20,10,20,10"
+                        ColumnDefinitions="Auto,*,Auto"
+                        RowDefinitions="Auto,Auto"
+                        BackgroundColor="White">
+                        
+                        <!-- Imagen del Producto -->
+                        <Image 
+                            Grid.Column="0"
+                            Source="{Binding Producto.Foto.Enlace}"
+                            WidthRequest="80"
+                            HeightRequest="80"
+                            Aspect="AspectFit"
+                            Margin="0,0,15,0"/>
+                        
+                        <!-- Detalles del Producto -->
+                        <VerticalStackLayout Grid.Column="1" Spacing="5" VerticalOptions="Center">
+                            <!-- Nombre del Producto -->
+                            <Label
+                                Text="{Binding Producto.Nombre}"
+                                FontFamily="SFProBold"
+                                FontSize="13"/>
+                            
+                            <!-- Precio del Producto -->
+                            <Label 
+                                Text="{Binding Producto.Precio, StringFormat='RD${0:N2}'}"
+                                FontFamily="SFProSemibold"
+                                TextColor="Black"
+                                FontSize="13"/>
+                        </VerticalStackLayout>
+                        
+                        <!-- Control de Cantidad -->
+                        <Border Grid.Column="2" HeightRequest="35" BackgroundColor="White" Stroke="Black">
+                        <Grid 
+                            Grid.Column="2"
+                            ColumnDefinitions="Auto,Auto,Auto"
+                            VerticalOptions="Center">
+                            
+                            <!-- Botón Disminuir -->
+                            <Button 
+                                Grid.Column="0"
+                                Text="-"
+                                BackgroundColor="White"
+                                TextColor="Black"
+                                FontSize="18"
+                                WidthRequest="20"
+                                HeightRequest="20"
+                                Padding="0"
+                                Margin="0,0,0,5"
+                                CornerRadius="20"
+                                Clicked="OnDisminuirCantidadClicked"
+                                CommandParameter="{Binding Producto.Id}"/>
+                            
+                            <!-- Cantidad -->
+                            <Label 
+                                Grid.Column="1"
+                                Text="{Binding Cantidad}"
+                                FontFamily="SFProBold"
+                                FontSize="18"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                Margin="10,0"/>
+                            
+                            <!-- Botón Aumentar -->
+                            <Button 
+                                Grid.Column="2"
+                                Text="+"
+                                BackgroundColor="White"
+                                TextColor="Black"
+                                FontSize="18"
+                                WidthRequest="20"
+                                HeightRequest="20"
+                                Margin="0,0,0,5"
+                                Padding="0"
+                                CornerRadius="20"
+                                Clicked="OnAumentarCantidadClicked"
+                                CommandParameter="{Binding Producto.Id}"/>
+                        </Grid>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+            <!-- Vista cuando el carrito está vacío -->
+            <CollectionView.EmptyView>
+                <VerticalStackLayout
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Spacing="20">
+                    <Image 
+                        Source="carrito_vacio.svg"
+                        WidthRequest="100"
+                        HeightRequest="100" />
+                    <Label 
+                        Text="Tu carrito está vacío"
+                        FontFamily="SFProBold"
+                        FontSize="20"
+                        HorizontalOptions="Center"/>
+                    <Label 
+                        Text="Agrega productos desde el menú"
+                        FontFamily="SFProRegular"
+                        FontSize="16"
+                        TextColor="{StaticResource Secondary}"
+                        HorizontalOptions="Center"/>
+                    <Button 
+                        Text="Ir al Menú"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"
+                        FontFamily="SFProBold"
+                        CornerRadius="25"
+                        Padding="20,10"
+                        Margin="0,10,0,0"
+                        Clicked="OnIrAlMenuClicked"/>
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+        </CollectionView>
+        
+        <!-- Resumen y Botón de Checkout -->
+        <Grid 
+            Grid.Row="2"
+            BackgroundColor="White"
+            Padding="20"
+            RowDefinitions="Auto,Auto"
+            ColumnDefinitions="*,Auto"
+            IsVisible="{Binding TieneItems}">
+            
+            <!-- Total -->
+            <Label 
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="Total"
+                FontFamily="SFProBold"
+                FontSize="18"/>
+            
+            <Label 
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="{Binding Total, StringFormat='RD${0:N2}'}"
+                FontFamily="SFProBold"
+                FontSize="18"/>
+            
+
+            <!-- Botón de Confirmar Orden -->
+            <Button 
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Text="Realizar Orden"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White"
+                FontFamily="SFProBold"
+                CornerRadius="25"
+                Margin="0,20,0,0"
+                Clicked="OnRealizarOrdenClicked"/>
+                    </Grid>
+        
+        <!-- Indicador de carga -->
+        <ActivityIndicator 
+            x:Name="loadingIndicator"
+            Grid.Row="1"
+            IsVisible="False"
+            IsRunning="False"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Color="{StaticResource Primary}"/>
+    </Grid>
+</ContentPage>
