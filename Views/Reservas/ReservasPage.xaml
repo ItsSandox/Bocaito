@@ -1,17 +1,139 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Bocaito.ReservasPage"
              Shell.NavBarIsVisible="False">
 
-    <ScrollView>
-        <Label
-            Margin="30,0,0,0"
-            FontFamily="SFProBold"
-            FontSize="23"
-            TextColor="{StaticResource TextColor}"
-            HorizontalOptions="Start"
-            VerticalOptions="Start"
-            Text="Reservas" />
-    </ScrollView>
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Barra superior -->
+        <Grid Grid.Row="0" Padding="0,10,0,-10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label 
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="Mis Reservas"
+                FontFamily="SFProBold"
+                FontSize="20"
+                Margin="0,0,0,10"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
+                
+            <BoxView 
+                Grid.Row="1"
+                Grid.ColumnSpan="3"
+                HeightRequest="1"
+                BackgroundColor="Black"
+                Margin="0,0,0,0"
+                VerticalOptions="End" />
+                
+        </Grid>
+
+        <!-- Lista de Reservas -->
+        <CollectionView 
+            Grid.Row="1"
+            x:Name="reservasCollectionView"
+            ItemsSource="{Binding Reservas}"
+            SelectionMode="None"
+            Margin="0,20,0,0">
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame 
+                        Margin="15,5,15,10"
+                        Padding="15"
+                        BackgroundColor="White"
+                        BorderColor="{StaticResource Input}"
+                        CornerRadius="10"
+                        HasShadow="False">
+                        <Grid RowDefinitions="Auto,Auto,Auto">
+                            <!-- Encabezado de la Reserva -->
+                            <Grid Grid.Row="0" ColumnDefinitions="*,Auto">
+                                <Label 
+                                    Grid.Column="0"
+                                    Text="{Binding Id, StringFormat='Reserva #{0}'}"
+                                    FontFamily="SFProBold"
+                                    FontSize="16"/>
+                            </Grid>
+                            
+                            <!-- Fecha y Hora -->
+                            <Grid Grid.Row="1" Margin="0,10,0,0">
+                                <Label 
+                                    Text="{Binding Fecha, StringFormat='{0:dddd d \\de MMMM \\de yyyy}'}"
+                                    TextColor="Black"
+                                    FontFamily="SFProRegular"
+                                    FontSize="14"/>
+                            </Grid>
+                            
+                            <!-- Hora -->
+                            <Grid Grid.Row="2" Margin="0,5,0,0">
+                                <Label 
+                                    Text="{Binding Fecha, StringFormat='{0:hh:mm tt}'}"
+                                    TextColor="{StaticResource Secondary}"
+                                    FontFamily="SFProBold"
+                                    FontSize="14"/>
+                            </Grid>
+                            
+                            <!-- Descripción -->
+                            <Label 
+                                Grid.Row="3"
+                                Text="{Binding Descripcion}"
+                                FontFamily="SFProRegular"
+                                FontSize="14"
+                                TextColor="{StaticResource Secondary}"
+                                Margin="0,30,0,0"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+            <!-- Vista cuando no hay reservas -->
+            <CollectionView.EmptyView>
+                <VerticalStackLayout
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Spacing="20">
+                    <Image 
+                        Source="reservas_vacio.svg"
+                        WidthRequest="100"
+                        HeightRequest="100" />
+                    <Label 
+                        Text="No tienes reservas"
+                        FontFamily="SFProBold"
+                        FontSize="20"
+                        HorizontalOptions="Center"/>
+                    <Label 
+                        Text="Crea tu primera reserva"
+                        FontFamily="SFProRegular"
+                        FontSize="16"
+                        TextColor="{StaticResource Secondary}"
+                        HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+        </CollectionView>
+        
+        <!-- Indicador de carga -->
+        <ActivityIndicator 
+            x:Name="loadingIndicator"
+            Grid.Row="1"
+            IsVisible="False"
+            IsRunning="False"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Color="{StaticResource Primary}"/>
+            <Button Grid.Row="2" 
+                        Text="Crear Reserva"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"
+                        FontFamily="SFProBold"
+                        CornerRadius="25"
+                        Padding="20,10"
+                        Margin="10,10,10,20"
+                        Clicked="OnCrearReservaClicked"/>
+    </Grid>
 </ContentPage>

@@ -5,6 +5,8 @@ using Bocaito.Models;
 using Microsoft.Maui.Controls;
 using Supabase.Gotrue;
 using Supabase.Postgrest.Attributes;
+using Bocaito.Services;
+using Firebase.Messaging;
 
 
 namespace Bocaito.Services
@@ -36,7 +38,243 @@ namespace Bocaito.Services
                 return false;
             }
         }
+        //Firebase
+    public async Task<bool> GuardarOActualizarTokenFirebase(string firebaseToken)
+{
+    if (_client == null)
+        throw new InvalidOperationException("Supabase client is not initialized");
+    
+    try 
+    {
+        // Obtener el usuario autenticado actual
+        var currentUser = _client.Auth.CurrentUser;
+        if (currentUser == null)
+            return false;
+
+        // Buscar si ya existe un token para este usuario
+        var existingTokenQuery = await _client
+            .From<Token>()
+            .Where(t => t.UserId == currentUser.Id)
+            .Get();
+
+        if (existingTokenQuery.Models.Any())
+        {
+            // Actualizar el token existente
+            var existingToken = existingTokenQuery.Models.First();
+            existingToken.FirebaseToken = firebaseToken;
+            existingToken.UpdatedAt = DateTime.Now;
+            existingToken.DeviceType = DeviceInfo.Platform == DevicePlatform.Android ? "Android" : "iOS";
+
+            await _client
+                .From<Token>()
+                .Update(existingToken);
+        }
+        else
+        {
+            // Crear un nuevo registro de token
+            var newToken = new Token
+            {
+                UserId = currentUser.Id,
+                FirebaseToken = firebaseToken,
+                DeviceType = DeviceInfo.Platform == DevicePlatform.Android ? "Android" : "iOS",
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
+            };
+
+            await _client
+                .From<Token>()
+                .Insert(newToken);
+        }
+
+        return true;
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error al guardar token de Firebase: {ex.Message}");
+        return false;
+    }
+}
+        // Métodos para Reservas
+        public async Task<List<Reserva>> ObtenerReservasUsuarioAsync()
+        {
+            if (_client == null)
+                throw new InvalidOperationException("Supabase client is not initialized");
+            
+            try 
+            {
+                // Obtener el usuario autenticado actual
+                var currentUser = _client.Auth.CurrentUser;
+                if (currentUser == null)
+                    return new List<Reserva>();
+
+                // Buscar las reservas del usuario
+                var reservasQuery = await _client
+                    .From<Reserva>()
+                    .Where(r => r.UserId == currentUser.Id)
+                    .Order("fecha", Supabase.Postgrest.Constants.Ordering.Descending)
+                    .Get();
+
+                return reservasQuery.Models;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener las reservas del usuario: {ex.Message}");
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error", 
+                    "No se pudieron cargar las reservas", 
+                    "Ok"
+                );
+                return new List<Reserva>();
+            }
+        }
+    public async Task<Reserva?> CrearReservaAsync(DateTime fecha, string descripcion)
+        {
+            if (_client == null)
+                throw new InvalidOperationException("Supabase client is not initialized");
+            
+            try 
+            {
+                // Obtener el usuario autenticado actual
+                var currentUser = _client.Auth.CurrentUser;
+                if (currentUser == null)
+                    return null;
+
+                // Crear nueva reserva
+                var reserva = new Reserva
+                {
+                    Fecha = fecha,
+                    Descripcion = descripcion,
+                    UserId = currentUser.Id
+                };
+                
+                // Insertar la reserva
+                var resultado = await _client
+                    .From<Reserva>()
+                    .Insert(reserva);
+
+                // Devolver la reserva creada
+                return resultado.Models.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al crear la reserva: {ex.Message}");
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error", 
+                    "No se pudo crear la reserva", 
+                    "Ok"
+                );
+                return null;
+            }
+        }
         //Métodos de consulta de datos
+    public async Task<List<PedidoModel>> ObtenerPedidosUsuarioAsync()
+{
+    if (_client == null)
+        throw new InvalidOperationException("Supabase client is not initialized");
+    
+    try 
+    {
+        // Obtener el usuario autenticado actual
+        var currentUser = _client.Auth.CurrentUser;
+        if (currentUser == null)
+            return new List<PedidoModel>();
+
+        // Buscar los carritos (pedidos) del usuario que no estén en estado "activo"
+        var carritosQuery = await _client
+            .From<Carrito>()
+            .Where(c => c.UserId == currentUser.Id && c.Estado != "activo")
+            .Order("fecha_creacion", Supabase.Postgrest.Constants.Ordering.Descending)
+            .Get();
+
+        var pedidos = new List<PedidoModel>();
+        
+        // Procesar cada carrito como un pedido
+        foreach (var carrito in carritosQuery.Models)
+        {
+            // Crear el modelo del pedido
+            var pedidoModel = new PedidoModel
+            {
+                Id = carrito.Id,
+                FechaCreacion = carrito.FechaCreacion,
+                Estado = carrito.Estado,
+                Items = new List<PedidoProductoModel>()
+            };
+            
+            // Obtener los items de este carrito
+            var itemsQuery = await _client
+                .From<CarritoItem>()
+                .Where(i => i.CarritoId == carrito.Id)
+                .Get();
+            
+            decimal total = 0;
+            
+            // Procesar cada item del carrito
+            foreach (var item in itemsQuery.Models)
+            {
+                // Obtener información del producto
+                var productoQuery = await _client
+                    .From<Producto>()
+                    .Where(p => p.Id == item.ProductoId)
+                    .Get();
+                
+                var producto = productoQuery.Models.FirstOrDefault();
+                
+                if (producto != null)
+                {
+                    // Crear el modelo del item de pedido
+                    var itemModel = new PedidoProductoModel
+                    {
+                        Id = item.Id,
+                        ProductoId = item.ProductoId,
+                        ProductoNombre = producto.Nombre,
+                        PrecioUnitario = producto.Precio,
+                        Cantidad = item.Cantidad,
+                        Subtotal = producto.Precio * item.Cantidad
+                    };
+                    
+                    // Agregar el item al pedido
+                    pedidoModel.Items.Add(itemModel);
+                    
+                    // Sumar al total
+                    total += itemModel.Subtotal;
+                }
+            }
+            
+            // Establecer el total del pedido
+            pedidoModel.Total = total;
+            
+            // Agregar el pedido a la lista
+            pedidos.Add(pedidoModel);
+        }
+        
+        return pedidos;
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error al obtener los pedidos del usuario: {ex.Message}");
+        throw;
+    }
+}
+
+// Clases de modelo necesarias para SupabaseService
+    public class PedidoModel
+{
+    public int? Id { get; set; }
+    public DateTime FechaCreacion { get; set; }
+    public string Estado { get; set; }
+    public List<PedidoProductoModel> Items { get; set; }
+    public decimal Total { get; set; }
+}
+
+    public class PedidoProductoModel
+{
+    public int? Id { get; set; }
+    public int? ProductoId { get; set; }
+    public string ProductoNombre { get; set; }
+    public decimal PrecioUnitario { get; set; }
+    public int Cantidad { get; set; }
+    public decimal Subtotal { get; set; }
+}
     public async Task<Direccion> ObtenerDireccionUsuarioAsync()
     {
         if (_client == null)
@@ -303,7 +541,7 @@ namespace Bocaito.Services
         }
         public async Task<bool> UpdatePassword(string email, string otp, string newPassword){
             try{
-                var result = await _client.Auth.VerifyOTP(email,otp, Constants.EmailOtpType.Email);
+                var result = await _client.Auth.VerifyOTP(email,otp, Supabase.Gotrue.Constants.EmailOtpType.Email);
                 if(result != null){
                     await _client.Auth.Update(new UserAttributes
                 {
@@ -335,6 +573,17 @@ namespace Bocaito.Services
             if (response != null)
                 {
                     await StoreSessionToken(response);
+                    #if ANDROID
+try
+{
+    var token = FirebaseMessaging.Instance.GetToken().Result;
+    GuardarOActualizarTokenFirebase(token.ToString());
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error al guardar token de Firebase: {ex.Message}");
+}
+#endif
                 }
 
                 return response;

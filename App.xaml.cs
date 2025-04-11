@@ -47,7 +47,27 @@ public partial class App : Application
                 );
                 return;
             }
-        }
+#if ANDROID
+            // Solicitar permisos de notificaciones en Android 13+ (API 33+)
+            if (OperatingSystem.IsAndroidVersionAtLeast(33))
+            {
+                // Usando la solicitud de permisos directamente con Android API
+                var activity = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity;
+                if (activity != null)
+                {
+                    var context = activity.ApplicationContext;
+                    var notificationManager = context.GetSystemService(Android.Content.Context.NotificationService) as Android.App.NotificationManager;
+                    
+                    if (notificationManager != null && !notificationManager.AreNotificationsEnabled())
+                    {
+                        var intent = new Android.Content.Intent(Android.Provider.Settings.ActionAppNotificationSettings);
+                        intent.PutExtra(Android.Provider.Settings.ExtraAppPackage, context.PackageName);
+                        activity.StartActivity(intent);
+                    }
+                }
+            }
+#endif
+            }
         catch (Exception ex)
         {
             Console.WriteLine($"Error al inicializar Supabase: {ex.Message}");

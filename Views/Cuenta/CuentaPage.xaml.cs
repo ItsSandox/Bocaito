@@ -1,3 +1,4 @@
+using System.Diagnostics.Tracing;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Bocaito
@@ -30,6 +31,9 @@ namespace Bocaito
             {
                 await DisplayAlert("Error", $"No se pudo cerrar sesión. Inténtalo de nuevo. {ex}", "OK");
             }
+        }
+        private async void OnDireccionesClicked(object sender, EventArgs e){
+            await Shell.Current.GoToAsync("//direcciones");
         }
     }
 }

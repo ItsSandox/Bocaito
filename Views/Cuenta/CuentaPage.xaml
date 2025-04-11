@@ -34,7 +34,13 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Row="0">
+                <Grid Grid.Row="0" BackgroundColor="White">
+                        <Grid.Behaviors>
+                            <toolkit:TouchBehavior 
+                                TouchGestureCompleted="OnDireccionesClicked"
+                                PressedBackgroundColor="{StaticResource Input}"
+                        />
+                            </Grid.Behaviors>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40" />
                     </Grid.RowDefinitions>
@@ -68,6 +74,7 @@
                     VerticalOptions="End" />
 
                 <Grid Grid.Row="2">
+
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40" />
                     </Grid.RowDefinitions>

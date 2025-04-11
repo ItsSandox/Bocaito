@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Bocaito.Models;
 using Bocaito.Services;
 
@@ -21,6 +22,11 @@ public partial class MenuPage : ContentPage
         LoadUserAddress();
         LoadProductosAsync();
     }
+        protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LoadUserAddress();
+    }
 
     private async void LoadUserAddress()
     {
@@ -35,7 +41,7 @@ public partial class MenuPage : ContentPage
             }
             else
             {
-                lblDireccion.Text = "Dirección no disponible";
+                lblDireccion.Text = "Agregar dirección";
             }
         }
         catch (Exception ex)
@@ -97,9 +103,9 @@ public partial class MenuPage : ContentPage
             await DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
         }
     }
-    private void OnFlechaAbajoClicked(object sender, EventArgs e)
+    private async void OnFlechaAbajoClicked(object sender, EventArgs e)
     {
-        // Implementar lógica para flecha abajo
+        await Shell.Current.GoToAsync("//direcciones");
     }
 
     private void OnNotificationsClicked(object sender, EventArgs e)

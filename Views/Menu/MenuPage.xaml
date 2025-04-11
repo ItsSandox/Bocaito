@@ -7,7 +7,9 @@
 
     <Grid RowDefinitions="Auto,*">
         <!-- Barra superior -->
-        <Grid Grid.Row="0" Padding="0,10,0,0">
+        <Grid Grid.Row="0" Grid.Column="0" Padding="0,10,0,0" BackgroundColor="White">
+            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -15,31 +17,28 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
 
+            <Grid Grid.Row="0" Grid.Column="0" BackgroundColor="White">
+                <Grid.Behaviors>
+                    <toolkit:TouchBehavior 
+                        Grid.Column="0"
+                        PressedBackgroundColor="{StaticResource Input}"
+                        TouchGestureCompleted="OnFlechaAbajoClicked"
+                    />
+            </Grid.Behaviors>
             <Label 
                 x:Name="lblDireccion"
-                Grid.Row="0"
-                Grid.Column="0"
                 Text="Placeholder"
                 FontFamily="SFProSemibold"
                 FontSize="18"
                 HorizontalOptions="Start"
                 VerticalOptions="Center"
                 Margin="20,0,10,0"/>
+                
+            </Grid>
 
-            <ImageButton
-                Grid.Row="0"
-                Grid.Column="1"
-                x:Name="btnFlecha"
-                Source="flecha_abajo.svg"
-                WidthRequest="20"
-                HeightRequest="20"
-                Margin="0,5,0,0"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Clicked="OnFlechaAbajoClicked"/>
             <Grid Grid.Column="2" Padding="0,0,20,0" HorizontalOptions="End">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -80,6 +79,13 @@
                 Clicked="OnCarritoClicked"/>
             </Grid>
             </Grid>
+                <BoxView 
+                    Grid.Row="1"
+                    Grid.ColumnSpan="3"
+                    HeightRequest="1"
+                    BackgroundColor="Black"
+                    Margin="0,0,0,0"
+                    VerticalOptions="End" />
         </Grid>
 
    <!-- Lista de Categorías y Productos -->
@@ -122,8 +128,16 @@
                                         </Grid.Behaviors>
                                         
                                         <!-- Detalles del Producto (Izquierda) -->
+                                        <BoxView 
+                                                Grid.Row="1"
+                                                Grid.ColumnSpan="2"
+                                                HeightRequest="1"
+                                                BackgroundColor="{StaticResource Input}"
+                                                Margin="0,0,0,0"
+                                                VerticalOptions="End" />
                                         
                                         <VerticalStackLayout Grid.Column="0" Spacing="5">
+
                                             
                                             <Label
                                                 Margin ="0,10,0,0"

@@ -72,6 +72,18 @@ build_metadata.AdditionalFiles.ManifestResourceName = Bocaito.Views.Cuenta.Cuent
 build_metadata.AdditionalFiles.TargetPath = Views\Cuenta\CuentaPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\Cuenta\CuentaPage.xaml
 
+[D:/Bocaito/Bocaito/Views/Cuenta/Direcciones/DireccionesPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Bocaito.Views.Cuenta.Direcciones.DireccionesPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Cuenta\Direcciones\DireccionesPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Cuenta\Direcciones\DireccionesPage.xaml
+
+[D:/Bocaito/Bocaito/Views/Cuenta/Direcciones/NuevaDireccion/NuevaDireccion.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Bocaito.Views.Cuenta.Direcciones.NuevaDireccion.NuevaDireccion.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Cuenta\Direcciones\NuevaDireccion\NuevaDireccion.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Cuenta\Direcciones\NuevaDireccion\NuevaDireccion.xaml
+
 [D:/Bocaito/Bocaito/Views/LoadingPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Bocaito.Views.LoadingPage.xaml
@@ -101,6 +113,12 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Bocaito.Views.Pedidos.PedidosPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\Pedidos\PedidosPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\Pedidos\PedidosPage.xaml
+
+[D:/Bocaito/Bocaito/Views/Reservas/CrearReservas/CrearReserva.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Bocaito.Views.Reservas.CrearReservas.CrearReserva.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Reservas\CrearReservas\CrearReserva.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Reservas\CrearReservas\CrearReserva.xaml
 
 [D:/Bocaito/Bocaito/Views/Reservas/ReservasPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml

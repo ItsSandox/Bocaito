@@ -29,4 +29,23 @@
             <ShellContent Route="cuenta" ContentTemplate="{DataTemplate local:CuentaPage}" />
         </Tab>
     </TabBar>
+
+    <ShellContent 
+        Title="Direcciones" 
+        Route="direcciones" 
+        ContentTemplate="{DataTemplate local:DireccionesPage}" />
+    
+    <ShellContent 
+        Title="Nueva Dirección" 
+        Route="nuevadireccion" 
+        ContentTemplate="{DataTemplate local:NuevaDireccion}" />
+    
+    <ShellContent 
+        Title="Carrito" 
+        Route="carrito" 
+        ContentTemplate="{DataTemplate local:CarritoPage}" />
+    <ShellContent 
+        Title="Crear Reserva" 
+        Route="crear-reserva" 
+        ContentTemplate="{DataTemplate local:CrearReservaPage}" />
 </Shell>

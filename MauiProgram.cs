@@ -26,6 +26,21 @@ public static class MauiProgram
 				fonts.AddFont("Montserrat-Light.ttf", "MontserratLight");
 			});
 		builder.Services.AddSingleton<SupabaseService>();
+		builder.Services.AddTransient<LogInPage>();
+		builder.Services.AddTransient<SignUpPage>();
+		builder.Services.AddTransient<ForgotPassword2Page>();
+		builder.Services.AddTransient<ForgotPasswordPage>();
+		builder.Services.AddTransient<MenuPage>();
+		builder.Services.AddTransient<CarritoPage>();
+		builder.Services.AddTransient<PedidosPage>();
+		builder.Services.AddTransient<ReservasPage>();
+		builder.Services.AddTransient<CrearReservaPage>();
+		builder.Services.AddTransient<CuentaPage>();
+		builder.Services.AddTransient<DireccionesPage>();
+		builder.Services.AddTransient<NuevaDireccion>();
+		
+
+
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif

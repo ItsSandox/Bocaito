@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Bocaito.CrearReservaPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="White">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Barra superior -->
+        <Grid Grid.Row="0" Padding="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Botón de retroceso -->
+            <Grid Grid.Column="0" Margin="10,0,0,0">
+                <Grid.Behaviors>
+                    <toolkit:TouchBehavior 
+                        PressedBackgroundColor="{StaticResource Input}"
+                        TouchGestureCompleted="OnRegresarClicked"/>
+                </Grid.Behaviors>
+                <Image 
+                    Source="flecha_atras.svg"
+                    WidthRequest="24"
+                    HeightRequest="24"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+            </Grid>
+
+            <!-- Título -->
+            <Label 
+                Grid.Column="1"
+                Text="Crear Reserva"
+                FontFamily="SFProBold"
+                FontSize="20"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
+        </Grid>
+
+        <!-- Contenido principal -->
+        <ScrollView Grid.Row="1" Padding="20">
+            <VerticalStackLayout Spacing="20">
+                <!-- Selector de Fecha -->
+                <VerticalStackLayout Spacing="10">
+                    <Label 
+                        Text="Fecha de la Reserva"
+                        FontFamily="SFProSemibold"
+                        FontSize="16"/>
+                    <DatePicker 
+                        x:Name="fechaReservaPicker"
+                        MinimumDate="{Binding MinimumDate}"
+                        MaximumDate="{Binding MaximumDate}"
+                        Date="{Binding FechaSeleccionada}"
+                        FontFamily="SFProRegular"
+                        FontSize="16"
+                        BackgroundColor="{StaticResource Input}"
+                        Margin="0,0,0,10"/>
+                </VerticalStackLayout>
+
+                <!-- Selector de Hora -->
+                <VerticalStackLayout Spacing="10">
+                    <Label 
+                        Text="Hora de la Reserva"
+                        FontFamily="SFProSemibold"
+                        FontSize="16"/>
+                    <TimePicker 
+                        x:Name="horaReservaPicker"
+                        Time="{Binding HoraSeleccionada}"
+                        FontFamily="SFProRegular"
+                        FontSize="16"
+                        BackgroundColor="{StaticResource Input}"
+                        Margin="0,0,0,10"/>
+                </VerticalStackLayout>
+
+                <!-- Descripción -->
+                <VerticalStackLayout Spacing="10">
+                    <Label 
+                        Text="Descripción (Opcional)"
+                        FontFamily="SFProSemibold"
+                        FontSize="16"/>
+                    <Editor 
+                        x:Name="descripcionEditor"
+                        Text="{Binding Descripcion}"
+                        Placeholder="Detalles adicionales de tu reserva"
+                        HeightRequest="100"
+                        FontFamily="SFProRegular"
+                        FontSize="16"
+                        BackgroundColor="{StaticResource Input}"
+                        AutoSize="TextChanges"/>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Botón de Guardar -->
+        <Button 
+            Grid.Row="2"
+            Text="Crear Reserva"
+            BackgroundColor="{StaticResource Primary}"
+            TextColor="White"
+            FontFamily="SFProBold"
+            CornerRadius="25"
+            Padding="20,10"
+            Margin="20,10,20,20"
+            Clicked="OnCrearReservaClicked"/>
+    </Grid>
+</ContentPage>

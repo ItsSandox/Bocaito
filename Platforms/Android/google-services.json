@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "837249005199",
+    "project_id": "pnmaui-a211f",
+    "storage_bucket": "pnmaui-a211f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837249005199:android:7cd041eb937df84477a2fa",
+        "android_client_info": {
+          "package_name": "com.chefflinary.bocaito"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJU_4yjceJ1P-lltjBFqObYU9a31r75dE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

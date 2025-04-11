@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Bocaito.NuevaDireccion"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Encabezado -->
+            <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto">
+                <!-- Flecha izquierda -->
+                <BoxView 
+                    Grid.Row="1"
+                    Grid.ColumnSpan="3"
+                    HeightRequest="1"
+                    BackgroundColor="Black"
+                    Margin="0,0,0,0"
+                    VerticalOptions="End" />
+                    
+                <ImageButton Grid.Column="0"
+                    Grid.Row="0"
+                    Source="flecha.svg"
+                    HeightRequest="20"
+                    WidthRequest="20"
+                    BackgroundColor="Transparent"
+                    Clicked="OnRegresarClicked"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    Margin="20,20,0,10">
+                    <ImageButton.Triggers>
+                        <Trigger TargetType="ImageButton" Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="0.6"/>
+                        </Trigger>
+                    </ImageButton.Triggers>
+                </ImageButton>
+                 
+                <!-- Título centrado -->
+                <Label Grid.Column="1"
+                    Grid.Row="0"
+                       Text="Nueva dirección"
+                       TextColor="Black"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontFamily="SFProBold"
+                       FontSize="20"
+                       Margin="0,0,30,0"/>
+                
+            </Grid>
+
+            <!-- Formulario de Nueva Dirección -->
+            <StackLayout Grid.Row="1" VerticalOptions="Center">
+                <!-- Dirección -->
+                <Frame 
+                    x:Name="direccionFrame"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Input}, Dark={StaticResource InputDark}}" 
+                    Padding="0" Margin="20,0,20,10" 
+                    CornerRadius="15"
+                    BorderColor="Transparent"
+                    HasShadow="False">
+                    <Entry
+                        x:Name="entryDireccion"
+                        Margin="10,0,10,0"
+                        FontFamily="SFProRegular"
+                        FontSize="20"
+                        Placeholder="Dirección completa"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Center"/>
+                </Frame>
+
+                <!-- Número -->
+                <Frame 
+                    x:Name="numeroFrame"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Input}, Dark={StaticResource InputDark}}" 
+                    Padding="0" Margin="20,0,20,10" 
+                    CornerRadius="15"
+                    BorderColor="Transparent"
+                    HasShadow="False"> 
+                    <Entry
+                        x:Name="entryNumero"
+                        Margin="10,0,10,0"
+                        FontFamily="SFProRegular"
+                        FontSize="20"
+                        Placeholder="Número de casa"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Center"/>
+                </Frame>
+
+                <!-- Indicaciones -->
+                <Frame 
+                    x:Name="indicacionesFrame"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Input}, Dark={StaticResource InputDark}}" 
+                    Padding="0" Margin="20,0,20,10" 
+                    CornerRadius="15"
+                    BorderColor="Transparent"
+                    HasShadow="False">
+                    <Entry
+                        x:Name="entryIndicaciones"
+                        Margin="10,0,10,0"
+                        FontFamily="SFProRegular"
+                        FontSize="20"
+                        Placeholder="Indicaciones adicionales"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Center"/>
+                </Frame>
+
+                <!-- Teléfono -->
+                <Frame 
+                    x:Name="telefonoFrame"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Input}, Dark={StaticResource InputDark}}" 
+                    Padding="0" Margin="20,0,20,10" 
+                    CornerRadius="15"
+                    BorderColor="Transparent"
+                    HasShadow="False">
+                    <Entry
+                        x:Name="entryTelefono"
+                        Margin="10,0,10,0"
+                        FontFamily="SFProRegular"
+                        FontSize="20"
+                        Placeholder="Teléfono de contacto"
+                        Keyboard="Telephone"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Center"/>
+                </Frame>
+            </StackLayout>
+
+            <!-- Indicador de carga y Botón -->
+            <StackLayout Grid.Row="2">
+                <ActivityIndicator
+                    x:Name="loadingIndicator"
+                    IsRunning="False"
+                    IsVisible="False"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Margin="0,10,0,10" />
+
+                <Button
+                    x:Name="btnGuardar"
+                    CornerRadius="15"
+                    Margin="20,0,20,20"
+                    FontFamily="SFProBold"
+                    FontSize="16"
+                    Text="Guardar dirección" 
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    HorizontalOptions="Fill" 
+                    VerticalOptions="Center"
+                    Clicked="OnGuardarDireccionClicked"/>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
