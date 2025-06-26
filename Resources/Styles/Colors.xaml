@@ -12,6 +12,7 @@
     <Color x:Key="PlaceHolder">#8a898e</Color> 
     <Color x:Key="Background">#FFFFFF</Color>
     <Color x:Key="PrimaryText">#000000</Color>
+    <Color x:Key="TextColor">#000000</Color> <!-- Negro -->
     <!-- Modo Claro -->
 
     <Color x:Key="BackgroundLight">#FFFFFF</Color> <!-- Fondo claro -->

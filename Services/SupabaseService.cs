@@ -577,7 +577,7 @@ namespace Bocaito.Services
 try
 {
     var token = FirebaseMessaging.Instance.GetToken().Result;
-    GuardarOActualizarTokenFirebase(token.ToString());
+    await GuardarOActualizarTokenFirebase(token.ToString());
 }
 catch (Exception ex)
 {

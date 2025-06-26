@@ -1,32 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Bocaito\\Bocaito\\Bocaito.csproj": {}
+    "C:\\Users\\derie\\Documentos\\Proyectos\\Bocaito\\Bocaito.csproj": {}
   },
   "projects": {
-    "D:\\Bocaito\\Bocaito\\Bocaito.csproj": {
+    "C:\\Users\\derie\\Documentos\\Proyectos\\Bocaito\\Bocaito.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Bocaito\\Bocaito\\Bocaito.csproj",
+        "projectUniqueName": "C:\\Users\\derie\\Documentos\\Proyectos\\Bocaito\\Bocaito.csproj",
         "projectName": "Bocaito",
-        "projectPath": "D:\\Bocaito\\Bocaito\\Bocaito.csproj",
+        "projectPath": "C:\\Users\\derie\\Documentos\\Proyectos\\Bocaito\\Bocaito.csproj",
         "packagesPath": "C:\\Users\\derie\\.nuget\\packages\\",
-        "outputPath": "D:\\Bocaito\\Bocaito\\obj\\",
+        "outputPath": "C:\\Users\\derie\\Documentos\\Proyectos\\Bocaito\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\derie\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\derie\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0-android"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -79,7 +73,7 @@
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.3, )",
+              "version": "[9.0.4, )",
               "autoReferenced": true
             },
             "Mvvm": {
@@ -118,6 +112,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[9.0.6, 9.0.6]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.Android": {
               "privateAssets": "all"
@@ -126,7 +126,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Zf3zSdDseXw=",
+  "dgSpecHash": "VYQYdJiCAs0=",
   "success": true,
-  "projectFilePath": "D:\\Bocaito\\Bocaito\\Bocaito.csproj",
+  "projectFilePath": "C:\\Users\\derie\\Documentos\\Proyectos\\Bocaito\\Bocaito.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\derie\\.nuget\\packages\\communitytoolkit.maui\\11.2.0\\communitytoolkit.maui.11.2.0.nupkg.sha512",
     "C:\\Users\\derie\\.nuget\\packages\\communitytoolkit.maui.core\\11.2.0\\communitytoolkit.maui.core.11.2.0.nupkg.sha512",
@@ -34,7 +34,7 @@
     "C:\\Users\\derie\\.nuget\\packages\\microsoft.maui.essentials\\9.0.50\\microsoft.maui.essentials.9.0.50.nupkg.sha512",
     "C:\\Users\\derie\\.nuget\\packages\\microsoft.maui.graphics\\9.0.50\\microsoft.maui.graphics.9.0.50.nupkg.sha512",
     "C:\\Users\\derie\\.nuget\\packages\\microsoft.maui.resizetizer\\9.0.50\\microsoft.maui.resizetizer.9.0.50.nupkg.sha512",
-    "C:\\Users\\derie\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.3\\microsoft.net.illink.tasks.9.0.3.nupkg.sha512",
+    "C:\\Users\\derie\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.4\\microsoft.net.illink.tasks.9.0.4.nupkg.sha512",
     "C:\\Users\\derie\\.nuget\\packages\\mimemapping\\3.0.1\\mimemapping.3.0.1.nupkg.sha512",
     "C:\\Users\\derie\\.nuget\\packages\\mvvm\\1.0.4\\mvvm.1.0.4.nupkg.sha512",
     "C:\\Users\\derie\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
@@ -161,7 +161,8 @@
     "C:\\Users\\derie\\.nuget\\packages\\xamarin.kotlinx.coroutines.core\\1.9.0.2\\xamarin.kotlinx.coroutines.core.1.9.0.2.nupkg.sha512",
     "C:\\Users\\derie\\.nuget\\packages\\xamarin.kotlinx.coroutines.core.jvm\\1.9.0.2\\xamarin.kotlinx.coroutines.core.jvm.1.9.0.2.nupkg.sha512",
     "C:\\Users\\derie\\.nuget\\packages\\xamarin.kotlinx.serialization.core\\1.7.3.2\\xamarin.kotlinx.serialization.core.1.7.3.2.nupkg.sha512",
-    "C:\\Users\\derie\\.nuget\\packages\\xamarin.kotlinx.serialization.core.jvm\\1.7.3.2\\xamarin.kotlinx.serialization.core.jvm.1.7.3.2.nupkg.sha512"
+    "C:\\Users\\derie\\.nuget\\packages\\xamarin.kotlinx.serialization.core.jvm\\1.7.3.2\\xamarin.kotlinx.serialization.core.jvm.1.7.3.2.nupkg.sha512",
+    "C:\\Users\\derie\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.6\\microsoft.netcore.app.ref.9.0.6.nupkg.sha512"
   ],
   "logs": [
     {

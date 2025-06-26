@@ -3,15 +3,18 @@ using Supabase;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Xaml;
 using System.Threading.Tasks;
+using Bocaito.Services;
 
 namespace Bocaito
 {
     public partial class LogInPage : ContentPage
     {
+        private readonly SupabaseService _supabaseService;
 
-        public LogInPage()
+        public LogInPage(SupabaseService supabaseService)
         {
             InitializeComponent();
+            _supabaseService = supabaseService;
         }
         private void OnButtonEyeClicked(object sender, EventArgs e)
         {
@@ -71,7 +74,7 @@ namespace Bocaito
             
             try
             {
-                var result = await App.SupabaseService.SignIn(correo.Text, contraseña.Text);
+                var result = await _supabaseService.SignIn(correo.Text, contraseña.Text);
                 if (result?.User != null)
                 {
                     /*var usuario = await App.SupabaseService.GetCurrentUsuario();
